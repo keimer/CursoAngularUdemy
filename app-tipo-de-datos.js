@@ -1,4 +1,3 @@
-"use strict";
 var alfanumerico;
 var numerico;
 var booleano;
@@ -22,8 +21,8 @@ var spiderman = {
 };
 //Usando Template literales del ES6 ``
 var salida = alfanumerico + " -- " + numerico + " -- " + booleano + " -- " + fecha;
-console.log(salida);
-console.log("Variable \"cualquierTipo:any\" = " + cualquierTipo);
+console.log("Tipo de datos: " + salida);
+console.log("Tipo de datos: Variable \"cualquierTipo:any\" = " + cualquierTipo);
 console.log(spiderman);
 salida = alfanumerico + " -- \n" + numerico + " -- \n" + booleano + " -- \n" + fecha;
 console.log("Template literales multilinea: " + salida);

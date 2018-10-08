@@ -7,24 +7,24 @@ function Activar(obligatorio:string,
   }else{
     mensaje = `${ obligatorio } activó la ${ porDefecto } en la ${ opcional }`;
   }
-  console.log(mensaje);
+  console.log(`Funciones: ${mensaje}`);
 }
 
 Activar("Pinguino");
 Activar("Keimer", "Alarma","Mañana bien temprano");
 
 // Funciones flechas solucionan el problema del uso del this dentro del scope de una función
-let nombre:string = "Keimer";
+let nombre1:string = "Keimer";
 
 let hulk = {
-  nombre : "Hulk",
+  nombre1 : "Hulk",
   smash(){
     setTimeout(function(){ 
-      console.log( nombre + " smash!!!!!")
+      console.log( "Funciones: " + nombre1 + " smash!!!!!")
     },1500);
   },
   smashFlecha() {
-    setTimeout( () => console.log(this.nombre + " smash Flecha!!!!!"), 2000);
+    setTimeout( () => console.log("Funciones: " + this.nombre1 + " smash Flecha!!!!!"), 2000);
   }
 }
 

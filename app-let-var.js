@@ -1,4 +1,3 @@
-"use strict";
 // Se debe usar siempre let, no usar la palabra reservada var, no es recomendable.
 // Las constantes siempre van en mayusculas y se deben inicializar al momento de crearlas.
 var PI = 3.14;

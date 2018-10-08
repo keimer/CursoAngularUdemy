@@ -26,8 +26,8 @@ let spiderman = {
 //Usando Template literales del ES6 ``
 let salida = `${alfanumerico} -- ${numerico} -- ${booleano} -- ${fecha}`;
 
-console.log(salida);
-console.log(`Variable "cualquierTipo:any" = ${cualquierTipo}`);
+console.log(`Tipo de datos: ${salida}`);
+console.log(`Tipo de datos: Variable "cualquierTipo:any" = ${cualquierTipo}`);
 console.log(spiderman);
 
 salida = `${alfanumerico} -- 
