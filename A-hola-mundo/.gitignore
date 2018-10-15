@@ -5,6 +5,9 @@
 /tmp
 /out-tsc
 
+# personalizados kz
+package-lock.json
+
 # dependencies
 /node_modules
 
