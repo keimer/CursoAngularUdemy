@@ -7,6 +7,5 @@ function consola( constructor:Function){
 @consola
 class Villanos{
     constructor(public nombre:string){
-
     }
 }
