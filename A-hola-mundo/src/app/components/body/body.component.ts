@@ -19,11 +19,25 @@ export class BodyComponent implements OnInit {
   padres: string[] = ['Mirna Zamora Cisneros', 'Enrrique Zamora Cisneros', 'Tulio Salazar Torres', 'Rosa Salazar Torres'];
   hijos: string[] = ['Daniel Zamora Salazar', 'Sebastian Zamora Salazar'];
 
-  constructor() { 
+  constructor() {
     this.card = true;
     this.corazon = false;
     this.familiares = true;
-    // this.familiarPadres = true;
+    console.log(`constructor: ${this.familiares}`);
+  }
+
+  mostrarPadres() {
+    // console.log(`mostrarPadres(1): ${this.familiares}`);
+    if (this.familiares !== true) {
+      this.familiares = true;
+    }
+  }
+
+  mostrarHijos() {
+    // console.log(`mostrarPadres(1): ${this.familiares}`);
+    if (this.familiares !== false) {
+      this.familiares = false;
+    }
   }
 
   ngOnInit() {

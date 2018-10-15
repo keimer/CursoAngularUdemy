@@ -25,14 +25,14 @@
           <hr>
           <div class="row">
             <div class="col-sm-6">
-              <button (click)= "familiares = !familiares" class="btn btn-outline-primary">Padres</button>
+              <button (click)= "mostrarPadres()" class="btn btn-outline-primary">Padres</button>
             </div>
             <div class="col-sm-6">
-                <button (click) = "familiares = !familiares" class="btn btn-outline-primary">Hijos</button>  
+                <button (click) = "mostrarHijos()" class="btn btn-outline-primary">Hijos</button>  
             </div>
           </div>
           <div class="container m-4">
-            <ul *ngIf= "familiares" class="list-group">
+            <ul *ngIf= " familiares" class="list-group">
               <li *ngFor = "let familiar of padres" class="list-group-item">{{ familiar }}</li>
             </ul>
             <ul *ngIf= "!familiares" class="list-group">

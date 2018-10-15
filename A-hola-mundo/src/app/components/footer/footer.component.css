@@ -4,3 +4,10 @@ footer{
     bottom: 0px;
     width: 100%;
 }
+
+/* Este media permite hacer cambios de estilos para adaptar responsivamente el sitio a cualquier dispositivo */
+@media screen and (max-width: 550px){
+    footer{
+        position: relative;
+    }
+}
