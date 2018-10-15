@@ -1,3 +1,45 @@
-<p>
-  body works!
-</p>
+<div class="container row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div *ngIf = " card " class="card-body">
+          <h1 class="card-title">*ngIf</h1>
+          <hr>
+          <h4>{{ frase.autor }}</h4>
+          <p class="card-text">{{ frase.mensaje }}</p>
+          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        </div>
+        <div>
+          <img *ngIf = " corazon " src="../../../assets/corazon-latiendo.gif" alt="">
+        </div>
+      </div>
+      <div class="container m-3">
+        <button  (click) = "card = !card; corazon = !corazon" class="btn btn-outline-primary">Mostrar/Ocultar</button>
+
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">*ngFor</h1>
+          <hr>
+          <div class="row">
+            <div class="col-sm-6">
+              <button (click)= "familiares = !familiares" class="btn btn-outline-primary">Padres</button>
+            </div>
+            <div class="col-sm-6">
+                <button (click) = "familiares = !familiares" class="btn btn-outline-primary">Hijos</button>  
+            </div>
+          </div>
+          <div class="container m-4">
+            <ul *ngIf= "familiares" class="list-group">
+              <li *ngFor = "let familiar of padres" class="list-group-item">{{ familiar }}</li>
+            </ul>
+            <ul *ngIf= "!familiares" class="list-group">
+              <li *ngFor = "let familiar of hijos" class="list-group-item">{{ familiar }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
