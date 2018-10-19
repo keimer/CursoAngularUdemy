@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeroeComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    console.log('Vista Heroe Singular');
+  }
 
   ngOnInit() {
   }

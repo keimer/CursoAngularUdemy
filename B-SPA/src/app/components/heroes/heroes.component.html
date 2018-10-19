@@ -4,15 +4,18 @@
 
 <div class="card-columns">
   
-  <div class="card" *ngFor='let heroe of heroes'>
+  <div class="card" *ngFor='let heroe of heroes; let id =index;'>
     <img class="card-img-top" [src]="heroe.img" [alt]="heroe.nombre">
     <div class="card-body">
       <h5 class="card-title">{{ heroe.nombre }} - {{ heroe.aparicion }}</h5>
       <p class="card-text">{{ heroe.bio }}</p>
 
-      <button type="button" class="btn btn-outline-primary btn-block">
+      <button (click)="verHeroe(id)" type="button" class="btn btn-outline-primary btn-block">
         Ver mas...
       </button>
+
+      <a [routerLink]="['/heroe', id]" >Ver mas por Link.....</a>
+
     </div>
   </div>
 </div>
