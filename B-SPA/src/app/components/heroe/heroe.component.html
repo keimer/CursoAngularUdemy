@@ -1,3 +1,57 @@
-<p>
-  heroe Singular works!
-</p>
+<h1>{{ heroeSeleccionado.nombre }} <small>({{ heroeSeleccionado.aparicion }})</small></h1>
+
+<hr>
+<div class="container">
+    <!-- Fila Uno -->
+    <div class="row kz-animated kz-fadeIn kz-fast">
+        <div class="col">
+            <img [src]="heroeSeleccionado.img" [alt]="heroeSeleccionado.nombre" class="img-fluid">
+            <br>
+            <br>
+            <a [routerLink]="['/heroes']" class="btn btn-outline-danger btn-block">Regresar</a>
+        </div>
+        <div class="col">
+            <h3>{{ heroeSeleccionado.nombre }}</h3>
+            <hr>
+            <p>{{ heroeSeleccionado.bio }}</p>
+            <br>
+            <div>
+                <img [src]="tipoCasa()" [alt]="heroeSeleccionado.casa" class="kz-img-logo-casa">
+            </div>
+        </div>
+    </div>
+    <!-- Fila Dos -->
+    <!-- <div class="row">
+        <div class="col">
+            1 de 2
+        </div>
+        <div class="col">
+            2 de 2
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            1 de 3
+        </div>
+        <div class="col">
+            2 de 3
+        </div>
+        <div class="col">
+            3 de 3
+        </div>
+    </div> -->
+</div>
+<!-- <h1>{{ heroeSeleccionado.nombre }}</h1>
+<hr>
+
+<div *ngIf="error" class="card" style="width: 18rem;">
+    <img class="card-img-top" [src]="heroeSeleccionado.img" [alt]="heroeSeleccionado.nombre">
+    <hr>
+    <p>Fecha de aparición: {{ heroeSeleccionado.aparicion }}</p>
+    <hr>
+    <div class="card-body">
+        <p class="card-text">{{ heroeSeleccionado.bio }}</p>
+    </div>
+    <hr>
+    <img [src]="heroeSeleccionado.casa" [alt]="heroeSeleccionado.casa">
+</div> -->

@@ -1,5 +1,12 @@
 import { Injectable } from '@angular/core';
 
+export interface Heroe {
+  nombre: string ;
+  bio: string;
+  img: string;
+  aparicion: string;
+  casa: string;
+}
 @Injectable()
 export class HeroesService {
 
@@ -56,18 +63,30 @@ export class HeroesService {
   ];
 
   constructor() {
-    console.log('Funcionando el servicio');
+    // console.log('Funcionando el servicio');
    }
 
+   // Retorna la lista de los heroes
    public getHeroes(): Heroe[] {
      return this.Heroes;
     }
-  }
 
-  export interface Heroe {
-    nombre: string;
-    bio: string;
-    img: string;
-    aparicion: string;
-    casa: string;
+    // Retorna un heroe seleccionado (según su id)
+    public getHeroe(id: number): Heroe {
+      if (id <= 0 && id > this.Heroes.length) {
+        const heroeVacio: Heroe = {
+          nombre : '', bio : '', img : '', aparicion : '', casa : ''
+        };
+        return heroeVacio;
+      }
+      return this.Heroes[id];
+     }
+
+     getImagenTipoCasa( casa: string) {
+      if ( casa === 'DC' ) {
+        return 'assets/img/dc-comic.png';
+      }else {
+        return 'assets/img/Marvel.jpg';
+      }
+     }
   }

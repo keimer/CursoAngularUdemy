@@ -16,11 +16,11 @@ export class HeroesComponent implements OnInit {
 
   ngOnInit() {
     this.heroes = this._heroeService.getHeroes();
-    console.log(this.heroes);
+    // console.log(this.heroes);
   }
 
   verHeroe(id: number) {
-    console.log('Indice: ' + id);
+    // console.log('Indice: ' + id);
     this._router.navigate( ['/heroe', id ]);
   }
 }
