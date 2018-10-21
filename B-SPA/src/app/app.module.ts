@@ -15,6 +15,7 @@ import { AboutComponent } from './components/about/about.component';
 import { HeroesComponent } from './components/heroes/heroes.component';
 import { HeroeComponent } from './components/heroe/heroe.component';
 import { HandlerErrorComponent } from './components/shared/handler-error/handler-error.component';
+import { ShareHeroesComponent } from './components/share-heroes/share-heroes.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HandlerErrorComponent } from './components/shared/handler-error/handler
     AboutComponent,
     HeroesComponent,
     HeroeComponent,
-    HandlerErrorComponent
+    HandlerErrorComponent,
+    ShareHeroesComponent
   ],
   imports: [
     BrowserModule,

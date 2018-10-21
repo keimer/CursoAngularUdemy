@@ -1,3 +1,22 @@
-<p>
-  share-heroes works!
-</p>
+<!-- <p>Busqueda de heroes satisfactoria</p>
+
+<ul>
+    <li *ngFor="let heroe of heroesEncontrados;">
+        {{ heroe.nombre }} - ({{ heroe.aparicion }}) - {{ heroe.casa }}
+    </li>
+</ul> -->
+<div class="container kz-animated kz-fadeIn">
+    <h1>Heroes Encontrados</h1>
+</div>
+<hr>
+<div class="card-columns kz-animated kz-fadeIn kz-fast">
+    <div class="card" *ngFor='let heroe of heroesEncontrados; let id =index;'>
+        <img class="card-img-top" [src]="heroe.img" [alt]="heroe.nombre">
+        <div class="card-body">
+            <h5 class="card-title">{{ heroe.nombre }} - {{ heroe.aparicion }}</h5>
+            <p class="card-text">{{ heroe.bio }}</p>
+
+            <button (click)="verHeroe(heroe.id)" type="button" class="btn btn-outline-primary btn-block">Ver mas...</button>
+        </div>
+    </div>
+</div>

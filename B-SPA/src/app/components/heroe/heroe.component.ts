@@ -10,6 +10,7 @@ import { HeroesService, Heroe } from '../../services/heroes.service';
 export class HeroeComponent implements OnInit {
   // Inicializo el objeto para evitar errores al intentar leer una propiedad
   private heroeSeleccionado: Heroe = {
+    id: -1,
     nombre : '',
     bio: '',
     img: '',
@@ -29,11 +30,6 @@ export class HeroeComponent implements OnInit {
       // this.heroeId = params.id;  // esta opción tmabien funciona.
       this.heroeId = params['id'];  // Opción recomendada a usa, el nombre de la propiedad o parametro debe ser identico al que fue colocado en el archivo app.routes.ts para dicha ruta.
     });
-
-    // const id: Observable<string> = route.params.map(p => p.id);
-    // const url: Observable<string> = route.url.map(segments => segments.join(''));
-    // // route.data includes both `data` and `resolve`
-    // const user = route.data.map(d => d.user);
   }
 
   ngOnInit() {
