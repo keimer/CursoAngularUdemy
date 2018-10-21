@@ -16,7 +16,12 @@
             <p>{{ heroeSeleccionado.bio }}</p>
             <br>
             <div>
+                <!-- Implementación usando una función del servicio -->
                 <img [src]="tipoCasa()" [alt]="heroeSeleccionado.casa" class="kz-img-logo-casa">
+
+                <!-- Forma usando un *ngIf -->
+                <!-- <img *ngIf="heroeSeleccionado.casa === 'DC'" src="assets/img/dc-comic.png" [alt]="heroeSeleccionado.casa" class="kz-img-logo-casa">
+                <img *ngIf="heroeSeleccionado.casa != 'DC'" src='assets/img/Marvel.jpg' [alt]="heroeSeleccionado.casa" class="kz-img-logo-casa"> -->
             </div>
         </div>
     </div>
