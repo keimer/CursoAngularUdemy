@@ -3,7 +3,8 @@
 </div>
 
 <div class="card-columns kz-animated kz-fadeIn kz-fast">
-    <div class="card" *ngFor='let heroe of heroes; let id =index;'>
+    <app-card-heroe *ngFor='let heroe of heroes;'></app-card-heroe>
+    <!-- <div class="card" *ngFor='let heroe of heroes; let id =index;'>
         <img class="card-img-top" [src]="heroe.img" [alt]="heroe.nombre">
         <div class="card-body">
             <h5 class="card-title">{{ heroe.nombre }} - {{ heroe.aparicion }}</h5>
@@ -16,5 +17,5 @@
             <a [routerLink]="['/heroe', id]">Ver mas por Link.....</a>
 
         </div>
-    </div>
+    </div> -->
 </div>

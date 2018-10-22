@@ -16,6 +16,7 @@ import { HeroesComponent } from './components/heroes/heroes.component';
 import { HeroeComponent } from './components/heroe/heroe.component';
 import { HandlerErrorComponent } from './components/shared/handler-error/handler-error.component';
 import { ShareHeroesComponent } from './components/share-heroes/share-heroes.component';
+import { CardHeroeComponent } from './components/shared/card-heroe/card-heroe.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ShareHeroesComponent } from './components/share-heroes/share-heroes.com
     HeroesComponent,
     HeroeComponent,
     HandlerErrorComponent,
-    ShareHeroesComponent
+    ShareHeroesComponent,
+    CardHeroeComponent
   ],
   imports: [
     BrowserModule,
