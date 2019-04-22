@@ -1,0 +1,276 @@
+Links importantes:
+https://styde.net/aprende-git/
+https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
+
+# Three Trees of GIT
+	The working directory
+		git status			--> lista los archivos modificados o adicionados recientemente que no se han subido a "Staging index"
+	Staging index
+		git ls-files		--> lista los archivos que se encuentran en el Staging
+		git ls-files -s		--> lista los archivos que se encuentran en el Staging con otros datos adicionales
+	Commit history
+		git log 			--> Lista los cambios (commit) de los archivos en la etapa o estructura "Commit history" para luego ser subidos
+								al repositorio remoto
+		git log origin/master..HEAD  --> comparas el contenido de la rama "master" en remoto con HEAD local 
+										 (lista solo los cambios que están locales pero no en remoto),
+										 que es el punto en el que lo has dejado tú con tus commits
+Proceso para TFS
+#Angular
+git checkout Development/Dev01
+git branch -D gitblit/certificacion
+git remote add -f certificacion  http://mvaldebenito@190.243.30.98:7990/r/SitioWebInversiones.git
+git checkout certificacion/certificacion -b gitblit/certificacion
+git fetch
+git pull
+git checkout Development/Dev01
+git merge --allow-unrelated-histories gitblit/certificacion
+git push -f origin Development/Dev01
+
+npm install -g @angular/cli
+
+# Clone
+git clone -b Development/Dev01 http://vms-in-p066:8080/tfs/InvestSecurity/APIs/_git/ApiValores
+git clone -b development http://kzamora@190.243.31.101:7990/r/APIs/ApiCliente.git
+git clone -b development http://kzamora@190.243.30.98:7990/r/SitioWebInversiones.git
+git clone -b Development/Dev01 http://vms-in-p066:8080/tfs/InvestSecurity/_git/Sitio%20WEB%20Inversiones_Test
+git clone -b Development/Dev00 http://vms-in-p066:8080/tfs/InvestSecurity/SitioWeb/_git/SitioWebInversionesAngular
+git clone http://kzamora@190.243.31.101:7990/r/APIs/ApiDlls.git
+git clone -b development http://kzamora@190.243.31.101:7990/r/APIs/ApiCliente.git
+git clone -b development http://kzamora@190.243.31.101:7990/r/APIs/ApiValores.git
+git clone -b development http://kzamora@190.243.31.101:7990/r/APIs/ApiCommon.git
+git clone -b development http://kzamora@190.243.31.101:7990/r/APIs/ApiFFMM.git
+git clone http://kzamora@190.243.31.101:7990/r/APIs/ApiDocs.git
+
+# Varios
+git config --global alias.superlog "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+
+git branch --set-upstream-to=origin/<branch_REMOTA> <branch_LOCAL>   (sirve para configurar una rama para el PULL)
+git status   --> muestra si hay archivos pendientes para preparar para luego subirlos al repositorio
+git add -A   /  git add nombreArchivo.ext
+git commit -m "mensaje"
+git merge 
+	git checkout <RamaQueRecibeLosCambios>
+	git merge <RamaQueTieneLosCambiosAFunsionar> :   Ejemplo:  git merge origin/Fix
+	>
+#REFLOG
+	git reflog   --> muestra la lista de todos los hash independientemente en el lugar donde el HEAD se encuentre, sirve para moverse entre 
+					commit y luego volver a commit mas nuevos que no se verán en el git log.
+
+# Config
+	git config -e			--> Edita el archivo en el editor configurado
+	git config user.name	--> Muestra el user configurado en el archivo .config
+	git config user.email	--> Muestra el email del user configurado en el archivo .config
+	
+#Checkout
+	git checkout HASH   --> Mueve el HEAD a un commit especifico.
+
+# Diff
+	git diff commitAntiguo commitMasNuevo   -->  Muestra las diferencias entre commits
+	git diff HEAD~2 HEAD   --> hace lo mismo que el anterior y compara el commit mas nuevo(donde este HEAD apuntando) con 2 commit anteriores 
+								(el ~2 representa la cantidad de commit que retrocede a partir del HEAD)
+# Reset
+	git reset --hard HASH	--> el ref pointer de los tres arboles de GIT (The working directory, Staging index y Commit history) 
+								son actualizados al HASH especificado perdiendose los commit superiores
+	git clean -n			--> lista los arvhivos que son ignore por git que fueron modificados en commit superiores al HASH reseteado
+	git clean -f			--> Elimina los archivos que son ignore modificados en commit superiores al HASH reseteado, es complemento del 
+								"git reset"
+	git reset HEAD~2 -- <nombrearchivo> --> devuelve el commit para el Staging Index pero el commit history local los mantiene listos para subir
+	
+#Revert
+	git revert -m 1 HASH 	--> Especificamos el Merge usando el hash SHA1 de la confirmación del merge. -m seguido por el 1 indica que 	
+								queremos mantener el lado padre del Merge (la rama en la que nos estamos fusionando).
+	
+	git revert --no-commit HASH		-->revierte los cambios del commit indicado (es un deshacer) en un nuevo commit y los deja como 
+										pendientes en el status, es decir es como si manualmente el desarrollador revierte los cambios y luego hace un nuevo commit. 
+	git revert --continue			--> Luego de deshacer todo lo deseado se debe usar este comando para aplicar el commit nuevo con todos
+										los cambios realizados dejando un solo commit de revert.
+	git revert --no-commit HEAD~2	--> hace los mismo que el anterior y revierte hasta 2 commit anteriores al HEAD.
+	git revert HASH			--> Lo mismo que el primero pero aplica el commit inmeditamente sin necesitar usar  "git revert --continue"
+	git revert HEAD~4
+								
+# Branch
+git branch NombreRamaNueva    /  git checkout -b nombreRamaNueva    -->  crea una nueva rama
+
+git branch -a    --> Muestra todas las ramas remotas y locales
+git branch -r    --> Muestra solo las ramas remotas
+
+# Commit
+git commit -am "mensaje"  -->  Añade todos los archivos y crea un commit en la misma sentencia sin necesidad de usar previamente "git add -A"
+git commit -m "mensaje" --amend    --> Sobreescribe el ultimo commit realizado, sirve para rectificar el ultimo commit en caso de haber olvidado algo que debio ir en ese commit
+
+# Moverse a un tag especifico de una rama
+git checkout tags/<NombreTag> -b <NewBranch>
+
+# Logs
+git log --pretty=oneline    (Muestra el id del commit y su comentario nada mas)
+
+git log --oneline    --> Condensa cada commit en una sola línea. Commit ID y mensaje
+got log --decorate   --> Muestra referencias base (Ramas, tags, head y commit)
+git log --stat       --> Explica en detalle el número de líneas cambiadas
+git log -p           --> Es un análisis mas profundo que "git log --stat"
+git shortlog         --> Agrupa los commit por autor  y muestra los titulos de los commit
+git log --graph --oneline --decorate    --> dibuja las lineas de las ramas
+git log pretty=format:"%cn hizo un commit %h el dia %cd" (Muestar mensajes perzonalizados de los commits)
+git log -3            (Limitamos el numero de commits)
+git log --after="today"
+git log --after="2016-1-2" --before="today" (Commits para localizar por fechas)
+git log --author="Santiago Iván" (commits por autor que cumplan con las letras)
+git log --grep="FOOTER" (Busca los commits que cumplan tal cual esta escrito entre las comillas)
+git log --grep="FOOTER" -i (Busca los commits que cumplan sin importar mayusculas o minusculas)
+git log -- index.html (Busca los commits en un archivo en especifico)
+git log -S"Por contenido" (Buscar los commits con el contenido dentro del archivo)
+-annotated tag: con mensaje,la estructura es la siguiente:
+git tag -a v1.0 -m"el mensaje"
+-lightweight tag:que agregas la versión y listo sin mensaje; la estructura es la siguiente:
+git tag v1.1
+git tag : solamente muestra todos los tag
+git show: me muestra información sobre algún tag
+git tag -d version : se utiliza para borrar u tag que uno no desee
+
+# Eliminar Ramas
+git push origin --delete nombre_rama_remota    (ramas remotas)
+git branch -D nombre_rama      (rama local)
+
+# Renombrar ramas
+git branch -m master old-master    (local)
+git branch -m seotweaks master     (local)
+git push -f origin master         (actualizar rama remota)
+
+git push -f origin serverfix:awesomebranch   (para llevar tu rama serverfix local a la rama awesomebranch en el proyecto remoto, si no exite se crea la nueva rama awesomebranch, en caso de que ya exista es actualizada la rama remota)
+
+# Crear Tag
+git tag -a v1.4 -m 'my version 1.4'
+git tag -a v1.2 -m 'version 1.2' 9fceb02   (Crear un tag después de varios commit sobre el commit donde habia que colocar el tag). EJEMPLO:
+	git tag -a 20171019_Release -m "Actualizar los fix IW-44, IW-46, IW-12, IW-15, IW-17, IW-18" 658efeb63fea7492192026bb5fd58eaf19af6955
+git show 20171019_Release    (para verlo y verificar el tag)
+git push origin --tags  (Subir los tags al remoto o la siguiente sentencia)
+git push origin v1.5   (subir los tag al remoto "git push origin [tagname]" o "git push origin --tags")
+
+# Modificar el último commit (incluye los archivos añadidos)
+git commit --ammend -m "Nuevo mensaje"
+
+# git stash (Guardado temporal en la pila provisional para poder cambiarse de rama sin aplicar cambios no termiandos)
+	git stash save
+	git stash
+	git stash list
+	git stash apply   (recupera los cambios de la pila provisional al area de trabajo dejandolos todos fuera del estado de preparación,pero no los elimina de la pila)
+	git stash apply --index    (recupera los cambios de la pila provisional al area de trabajo identicamente como estaban y no los elimina de la pila)
+	git stash pop    (recupera los cambios de la pila provisional al area de trabajo y los elimina de la pila)
+	
+# BLAME  -->  Show what revision and author last modified each line of a file
+	git blame  <Nombre archivo> -L +lineaInicio, lineafinal  --> git blame  WebAppRest/Web.QA1.config -L +28,20
+	git blame  <Nombre archivo> -L +lineaInicio
+	
+# REMOTE (git remote)
+	git remote add -f sitioActual http://kzamora@190.243.30.98:7990/r/SitioWebInversiones.git
+	git remote get-url --all origin   (Muestra la url al cual esta apuntando el remote)
+	git remote remove sitioActual  (Elimina un remote puntual)
+	
+############## Procedimiento PASE DE CERTIFICACION SECURITY PARA TFS #################
+git clone http://vms-in-p066:8080/tfs/InvestSecurity/APIs/_git/ApiCliente      (TFS)
+git remote add -f certificacion http://kzamora@190.243.31.101:7990/r/APIs/ApiCliente.git   (GITBLIT)
+git merge --allow-unrelated-histories certificacion/certificacion    (Merge)
+git push -f origin Development/Dev01
+
+############## Procedimiento PASE DE FIX PARA CERTIFICACION #################
+A.- Actualizar el repositorio local de certificacion:
+	git checkout certificacion
+	git fetch
+	git pull
+B.- Verificar cambios en Fix
+	git checkout Fix
+	git fetch
+	git pull
+	ng serve    (para verificar que compila sin error)
+	tomar notas de los IWs a subir a certificacion
+C.- Hacer el Merge
+	git checkout certificacion
+	git merge origin/Fix
+	git status    (verificar a que ambiente Environment esta apuntando y cambiarlo a que apunte a certificacion y hacer otro release que apunte a Iphone)
+	Iphone: apiUrl: 'http://190.243.30.98:8080/api/website'
+	En caso de conflicto, resolverlos y luego hacer:
+		git add .
+		git commit -m "Merge por conflicto: ver tag"
+	git log -10    (para verificar los cambios subidos)
+	ng serve compilar en local para verificar que no hay errores
+D.- Colocar el Tag
+	git tag -a yyyyMMdd_Release -m "Actualizar los Fixs: IW-?, IW-?,....."
+	git log -10   o   git log --pretty=oneline  
+E.- Push
+	git push origin <rama Remota>
+	git push --tags
+	git log -10   o   git log --pretty=oneline  
+F.- Publicar para el Environment Iphone (Debe ser publicado desde el CMD y no desde el Git Bash)
+	cmd /k npm update --silent
+	E:\Proyectos\New_WebSiteInversiones\certificacion\SitioWebInversiones\node_modules\.bin\ng build --base-href "/"
+	
+############## Procedimiento PASE DE CERTIFICACION PARA DESARROLLO #################
+A.- Actualizar el repositorio local de certificacion:
+	git checkout certificacion
+	git fetch
+	git pull
+B.- Actualizar el repositorio local de Desarrollo:
+	git checkout development
+	git fetch
+	git pull
+	ng serve    (para verificar que compila sin error)
+C.- Colocar un Tag de RollBack en Desarrollo antes del merge
+	git tag -a yyyyMMdd_RollBack -m "Punto para RollBack"
+	git log -10   o   git log --pretty=oneline  
+D.- Hacer el Merge en Desarrollo
+	git checkout development
+	git merge origin/certificacion
+	git status    (verificar a que ambiente Environment esta apuntando y cambiarlo a que apunte a development)
+	En caso de conflicto, resolverlos con la ayuda del equipo Front y luego hacer:
+		git add .
+		git commit -m "Merge por conflicto: ver tag XXXXXXXXXXXX"
+	git log -10    (para verificar los cambios subidos)
+	npm update 
+	ng serve (para verificar que compila sin error)
+E.- Detener la publicación por Jenkins de desarrollo y publicar desde mi rama local y solicitar a los desarrolladores que verifiquen sus cambios en el ambiente publicado de Desarrollo
+F.- Colocar el Tag de Release satifactorio desde certificacion
+	git tag -a yyyyMMdd_Release_Cert -m "Ambiente de desarrollo actualizado desde certificacion"
+	git log -10   o   git log --pretty=oneline
+	git push --tags
+E.- Push
+	git push origin <rama Remota> --tags
+	git log -10   o   git log --pretty=oneline
+
+############## Procedimiento PASE DE DESARROLLO PARA CERTIFICACION #################
+A.- Actualizar el repositorio local de certificacion:
+	git checkout certificacion
+	git fetch
+	git pull
+B.- Actualizar el repositorio local de Desarrollo:
+	git checkout development
+	git fetch
+	git pull
+	ng serve    (para verificar que compila sin error)
+C.- Hacer el Merge en Certificaión
+	git checkout certificacion
+	git merge origin/development
+	git status    (verificar a que ambiente Environment esta apuntando y cambiarlo a que apunte a certificacion)
+	En caso de conflicto, resolverlos con la ayuda del equipo Front y luego hacer:
+		git add .
+		git commit -m "Merge por conflicto: ver tag XXXXXXXXXXXX"
+	git log -10    (para verificar los cambios subidos)
+	npm update 
+	ng serve (para verificar que compila sin error), solicitar a los desarrolladores que verifiquen sus cambios
+D.- Colocar el Tag de Release satifactorio
+	git tag -a yyyyMMdd_Release_Dev -m "Release de nuevas funcionalidades"
+	git log -10   o   git log --pretty=oneline
+E.- Push
+	git push origin <rama Remota> --tags   -> git push origin certificacion --tags
+	git log -10   o   git log --pretty=oneline
+F.- Publicar CERTIFICACION y para el Environment Iphone (Debe ser publicado desde el CMD y no desde el Git Bash)
+	Para certificacion por Jenkins
+	cmd /k npm update --silent
+	E:\Proyectos\New_WebSiteInversiones\certificacion\SitioWebInversiones\node_modules\.bin\ng build --base-href "/"	
+
+############## Procedimiento PASE DE DESARROLLO PARA FIX #################
+A.- 
+B.- 
+C.- 
+D.- 
+E.- 
+F.- 
